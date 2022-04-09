@@ -6,20 +6,53 @@ Public Class Form1
 
     End Sub
 
-    Private Sub calculate_button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles calculate_button.Click
-        Dim b, h, cc, d, fc, fy, _as As Double
+    Private Sub flexure_button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles flexure_button.Click
+        Dim b, h, cc, d, fc, fy, mu As Double
+        Dim stdia, bardia As double
         Try
             b = Convert.ToDouble(beam_width.Text)
             h = Convert.ToDouble(beam_depth.Text)
-            cc = Convert.ToDouble(cover.Text)
-            d = h - cc
+            cc = Convert.ToDouble(clear_cover.Text)
+
             fc = Convert.ToDouble(conc_fc.Text)
             fy = Convert.ToDouble(steel_fy.Text)
-            _as = Convert.ToDouble(area_steel.Text)
+            mu = Convert.ToDouble(momentMu.Text)
+            mu = mu * 12000.0      ' convert from kip-ft to lb-in
+
+            Select Case True
+                Case st14.Checked
+                    stdia = 1.0 / 4
+                Case st38.Checked
+                    stdia = 3.0 / 8
+                Case st12.Checked
+                    stdia = 1.0 / 2
+            End Select
+
+            Select Case True
+                Case bar3.Checked
+                    bardia = 3 / 8.0
+                Case bar4.Checked
+                    bardia = 4 / 8.0
+                Case bar5.Checked
+                    bardia = 5 / 8.0
+                Case bar6.Checked
+                    bardia = 6 / 8.0
+                Case bar7.Checked
+                    bardia = 7 / 8.0
+                Case bar8.Checked
+                    bardia = 8 / 8.0
+                Case bar9.Checked
+                    bardia = 9 / 8.0
+                Case bar10.Checked
+                    bardia = 10 / 8.0
+            End Select
+
+            d = h - cc - stdia - bardia / 2.0
+
+
         Catch ex As Exception
             MsgBox(ex.Message, vbOKOnly, "Error in inputs")
         End Try
-
 
         'print inputs
         rtf.Clear()
@@ -28,11 +61,14 @@ Public Class Form1
         rtf.AppendText("-----------" & vbCrLf)
         _blue() : Output("Width of beam, b", b, "inch")
         _blue() : Output("Depth of beam, h", h, "inch")
-        _blue() : Output("Cover to rebar centre", cc, "inch")
+        _blue() : Output("Clear Cover", cc, "inch")
+        _blue() : Output("Stirrup Bar Diameter", stdia, "0.0##", "inch")
+        _blue() : Output("Main Bar Diameter", bardia, "0.0##", "inch")
         _blue() : Output("Specified Strength of Concrete, f'c", fc, "psi")
         _blue() : Output("Yield Strength of reinforcement, fy", fy, "psi")
-        _blue() : Output("Area of reinforcement, As", _as, "sq.inch")
+        _blue() : Output("Design Bending Moment, Mu", mu / 12000.0, "kip-ft")
         br()
+
 
         'print calculations and results
 
@@ -46,62 +82,43 @@ Public Class Form1
         Output("Beta-1", beta1, "0.0###", "")
         br()
 
-        Dim rho As Double = _as / (b * d)
+        Const phi As Double = 0.9
+        Output("Strength reduction factor, phi_flexure", phi, "")
+        rtf.AppendText("(Reinforcement percentage rho will be limited to rho_max)" & vbCrLf)
+        br()
 
-        Output("Provided reinforcement percentage, rho", rho * 100.0, "%", _as, "sq. inch")
-
-
+        Dim ru As Double = mu / (b * Math.Pow(d, 2))
+        Dim f1 As Double = (2 * ru) / (0.85 * fc * phi)
+        Dim f2 As Double = 1 - Math.Sqrt(1 - f1)
+        Dim rho_calc As Double = (0.85 * fc * f2) / fy
+        Output("Calculated reinforcement, As-calc", rho_calc * b * d, "sq.inch")
+        Output("rho-calc", rho_calc * 100, "%")
+        br()
 
         Dim rho_min As Double = Math.Max(3 * Math.Sqrt(fc) / fy, 200.0 / fy)
-
-        Output("Minimum reinforcement, rho-minimum", rho_min * 100.0, "%", rho_min * b * d, "sq.inch")
+        Output("Minimum reinforcement, As-min", rho_min * b * d, "sq. inch")
+        Output("rho-min", rho_min * 100, "%")
+        br()
 
         Dim rho_bal As Double = 0.85 * beta1 * (fc / fy) * (87000 / (87000 + fy))
-        Output("Balanced reinforcement, rho-balance", rho_bal * 100.0, "%", rho_bal * b * d, "sq.inch")
+        Output("Balanced reinforcement, As-bal", rho_bal * b * d, "sq. inch")
+        Output("rho-balance", rho_bal * 100, "%")
+        br()
 
         Const modulus_of_Steel As Double = 29000000.0
-
         Dim rho_max As Double = ((0.003 + fy / modulus_of_Steel) / 0.008) * rho_bal
-        Output("Maximum reinforcement, rho-max", rho_max * 100.0, "%", rho_max * b * d, "sq.inch")
+        Output("Maximum reinforcement, As-max", rho_max * b * d, "sq.inch")
+        Output("rho-max", rho_max * 100, "%")
         br()
 
-        '    CHECK RHO AGAINST RHO MAX AND RHO MIN
-        If (rho > rho_max) Then
-            If (rho <= rho_bal) Then
-                _red() : Info("rho is greater than rho_max, consider reducing.")
-                br()
-            Else
-                _red() : Info("rho is greater than rho_balance, reduce reinforcement percentage.")
-                Exit Sub
-            End If
+        If rho_calc > rho_max Then
+            _red(): Info("Calculated reinforcement is more than maximum allowed (rho-calc > rho-max). Revise section.")
+        Else
+            Dim rho As Double = Math.Max(rho_calc, Math.Min(rho_min, 4 * rho_calc / 3))
+            _green() : Output("Reinforcement to be provided, As", rho * b * d, "sq.inch")
+            _green() : Output("rho", rho * 100, "%")
         End If
 
-
-        If (rho < rho_min) Then
-            _red() : Info("rho is less than rho_min, consider increasing.")
-            br()
-        End If
-
-        '    calculate compression block
-
-        Dim a As Double = (_as * fy) / (0.85 * fc * b)
-        Output("Depth of Whitney block, a", a, "inch")
-
-        Dim c As Double = a / beta1
-        Output("Depth of neutral axis, c", c, "inch")
-        br()
-
-        '    calculate strain, phi and moment capacity
-        Dim epsilon_t As Double = ((d - c) / c) * 0.003
-        Output("Net Tensile Strain, epsilon_t", epsilon_t, "0.0#####", "")
-
-        Dim phi As Double = Phi_flexure(epsilon_t)
-        Output("Strength reduction factor, phi_flexure", phi, "0.0###", "")
-        br()
-
-        Dim moment_capacity As Double = _as * fy * (d - a / 2)
-        _green() : Output("Nominal Moment Capacity, Mn", moment_capacity / 12000.0, "kip-ft")
-        _green() : Output("Design Moment Capacity, Mu = phi * Mn", phi * moment_capacity / 12000.0, "kip-ft")
 
 
     End Sub
@@ -178,19 +195,19 @@ Public Class Form1
 
 
     Private Sub beam_width_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles beam_width.Enter, beam_width.Click, _
-        beam_depth.Enter, beam_depth.Click, cover.Enter, cover.Click, conc_fc.Enter, conc_fc.Click, steel_fy.Enter, steel_fy.Click, _
-        area_steel.Enter, area_steel.Click, TextBox1.Enter, TextBox1.Click
+        beam_depth.Enter, beam_depth.Click, clear_cover.Enter, clear_cover.Click, conc_fc.Enter, conc_fc.Click, steel_fy.Enter, steel_fy.Click, _
+          momentMu.Enter, momentMu.Click
 
         sender.SelectAll()
 
     End Sub
 
     Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        FormSerialisor.Deserialise(Me, Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) & "\sdu1-data.xml")
+        FormSerialisor.Deserialise(Me, Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) & "\sdu2-data.xml")
     End Sub
 
 
     Private Sub Form1_FormClosing(ByVal sender As System.Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles MyBase.FormClosing
-        FormSerialisor.Serialise(Me, Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) & "\sdu1-data.xml")
+        FormSerialisor.Serialise(Me, Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) & "\sdu2-data.xml")
     End Sub
 End Class
