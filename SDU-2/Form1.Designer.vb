@@ -43,8 +43,6 @@ Partial Class Form1
         Me.Label13 = New System.Windows.Forms.Label()
         Me.momentMu = New System.Windows.Forms.TextBox()
         Me.Label14 = New System.Windows.Forms.Label()
-        Me.Label15 = New System.Windows.Forms.Label()
-        Me.Label16 = New System.Windows.Forms.Label()
         Me.st14 = New System.Windows.Forms.RadioButton()
         Me.st38 = New System.Windows.Forms.RadioButton()
         Me.st12 = New System.Windows.Forms.RadioButton()
@@ -60,26 +58,28 @@ Partial Class Form1
         Me.bar4 = New System.Windows.Forms.RadioButton()
         Me.bar3 = New System.Windows.Forms.RadioButton()
         Me.Label17 = New System.Windows.Forms.Label()
-        Me.Label19 = New System.Windows.Forms.Label()
-        Me.shear_button = New System.Windows.Forms.Button()
         Me.Label20 = New System.Windows.Forms.Label()
         Me.shearVu = New System.Windows.Forms.TextBox()
         Me.Label21 = New System.Windows.Forms.Label()
         Me.Label22 = New System.Windows.Forms.Label()
         Me.phi_shear = New System.Windows.Forms.TextBox()
-        Me.shear_torsion_button = New System.Windows.Forms.Button()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.torsionTu = New System.Windows.Forms.TextBox()
         Me.Label23 = New System.Windows.Forms.Label()
-        Me.shear_phiTcr_button = New System.Windows.Forms.Button()
+        Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.dFlexure = New System.Windows.Forms.RadioButton()
+        Me.dShear = New System.Windows.Forms.RadioButton()
+        Me.dShearTorsion = New System.Windows.Forms.RadioButton()
+        Me.dShearTorsion2 = New System.Windows.Forms.RadioButton()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
+        Me.Panel3.SuspendLayout()
         Me.SuspendLayout()
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(13, 38)
+        Me.Label1.Location = New System.Drawing.Point(13, 15)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(122, 17)
         Me.Label1.TabIndex = 0
@@ -87,7 +87,7 @@ Partial Class Form1
         '
         'beam_width
         '
-        Me.beam_width.Location = New System.Drawing.Point(274, 35)
+        Me.beam_width.Location = New System.Drawing.Point(274, 12)
         Me.beam_width.Name = "beam_width"
         Me.beam_width.Size = New System.Drawing.Size(85, 22)
         Me.beam_width.TabIndex = 0
@@ -97,7 +97,7 @@ Partial Class Form1
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(365, 38)
+        Me.Label2.Location = New System.Drawing.Point(365, 15)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(34, 17)
         Me.Label2.TabIndex = 2
@@ -106,7 +106,7 @@ Partial Class Form1
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(13, 276)
+        Me.Label9.Location = New System.Drawing.Point(13, 253)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(196, 17)
         Me.Label9.TabIndex = 12
@@ -115,7 +115,7 @@ Partial Class Form1
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(365, 276)
+        Me.Label10.Location = New System.Drawing.Point(365, 253)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(26, 17)
         Me.Label10.TabIndex = 14
@@ -123,7 +123,7 @@ Partial Class Form1
         '
         'steel_fy
         '
-        Me.steel_fy.Location = New System.Drawing.Point(274, 273)
+        Me.steel_fy.Location = New System.Drawing.Point(274, 250)
         Me.steel_fy.Name = "steel_fy"
         Me.steel_fy.Size = New System.Drawing.Size(85, 22)
         Me.steel_fy.TabIndex = 4
@@ -133,7 +133,7 @@ Partial Class Form1
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(13, 248)
+        Me.Label7.Location = New System.Drawing.Point(13, 225)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(252, 17)
         Me.Label7.TabIndex = 9
@@ -142,7 +142,7 @@ Partial Class Form1
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(365, 248)
+        Me.Label8.Location = New System.Drawing.Point(365, 225)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(26, 17)
         Me.Label8.TabIndex = 11
@@ -150,7 +150,7 @@ Partial Class Form1
         '
         'conc_fc
         '
-        Me.conc_fc.Location = New System.Drawing.Point(274, 245)
+        Me.conc_fc.Location = New System.Drawing.Point(274, 222)
         Me.conc_fc.Name = "conc_fc"
         Me.conc_fc.Size = New System.Drawing.Size(85, 22)
         Me.conc_fc.TabIndex = 3
@@ -160,7 +160,7 @@ Partial Class Form1
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(13, 94)
+        Me.Label5.Location = New System.Drawing.Point(13, 71)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(110, 17)
         Me.Label5.TabIndex = 6
@@ -169,7 +169,7 @@ Partial Class Form1
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(365, 94)
+        Me.Label6.Location = New System.Drawing.Point(365, 71)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(34, 17)
         Me.Label6.TabIndex = 8
@@ -177,7 +177,7 @@ Partial Class Form1
         '
         'clear_cover
         '
-        Me.clear_cover.Location = New System.Drawing.Point(274, 91)
+        Me.clear_cover.Location = New System.Drawing.Point(274, 68)
         Me.clear_cover.Name = "clear_cover"
         Me.clear_cover.Size = New System.Drawing.Size(85, 22)
         Me.clear_cover.TabIndex = 2
@@ -187,7 +187,7 @@ Partial Class Form1
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(13, 66)
+        Me.Label3.Location = New System.Drawing.Point(13, 43)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(173, 17)
         Me.Label3.TabIndex = 3
@@ -196,7 +196,7 @@ Partial Class Form1
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(365, 66)
+        Me.Label4.Location = New System.Drawing.Point(365, 43)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(34, 17)
         Me.Label4.TabIndex = 5
@@ -204,7 +204,7 @@ Partial Class Form1
         '
         'beam_depth
         '
-        Me.beam_depth.Location = New System.Drawing.Point(274, 63)
+        Me.beam_depth.Location = New System.Drawing.Point(274, 40)
         Me.beam_depth.Name = "beam_depth"
         Me.beam_depth.Size = New System.Drawing.Size(85, 22)
         Me.beam_depth.TabIndex = 1
@@ -220,24 +220,24 @@ Partial Class Form1
         Me.rtf.Font = New System.Drawing.Font("Consolas", 10.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.rtf.Location = New System.Drawing.Point(430, 10)
         Me.rtf.Name = "rtf"
-        Me.rtf.Size = New System.Drawing.Size(866, 670)
+        Me.rtf.Size = New System.Drawing.Size(866, 726)
         Me.rtf.TabIndex = 0
         Me.rtf.TabStop = False
         Me.rtf.Text = ""
         '
         'flexure_button
         '
-        Me.flexure_button.Location = New System.Drawing.Point(216, 385)
+        Me.flexure_button.Location = New System.Drawing.Point(15, 521)
         Me.flexure_button.Name = "flexure_button"
-        Me.flexure_button.Size = New System.Drawing.Size(143, 31)
+        Me.flexure_button.Size = New System.Drawing.Size(143, 36)
         Me.flexure_button.TabIndex = 6
-        Me.flexure_button.Text = "Design for Flexure"
+        Me.flexure_button.Text = "Design"
         Me.flexure_button.UseVisualStyleBackColor = True
         '
         'Label13
         '
         Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(365, 351)
+        Me.Label13.Location = New System.Drawing.Point(365, 281)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(41, 17)
         Me.Label13.TabIndex = 2
@@ -245,7 +245,7 @@ Partial Class Form1
         '
         'momentMu
         '
-        Me.momentMu.Location = New System.Drawing.Point(274, 348)
+        Me.momentMu.Location = New System.Drawing.Point(274, 278)
         Me.momentMu.Name = "momentMu"
         Me.momentMu.Size = New System.Drawing.Size(85, 22)
         Me.momentMu.TabIndex = 0
@@ -255,31 +255,11 @@ Partial Class Form1
         'Label14
         '
         Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(13, 351)
+        Me.Label14.Location = New System.Drawing.Point(13, 281)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(195, 17)
         Me.Label14.TabIndex = 0
         Me.Label14.Text = "Design Bending Moment (Mu)"
-        '
-        'Label15
-        '
-        Me.Label15.AutoSize = True
-        Me.Label15.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label15.Location = New System.Drawing.Point(13, 10)
-        Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(186, 18)
-        Me.Label15.TabIndex = 18
-        Me.Label15.Text = "Beam Size and Material"
-        '
-        'Label16
-        '
-        Me.Label16.AutoSize = True
-        Me.Label16.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label16.Location = New System.Drawing.Point(13, 323)
-        Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(146, 18)
-        Me.Label16.TabIndex = 18
-        Me.Label16.Text = "Design for Flexure"
         '
         'st14
         '
@@ -320,7 +300,7 @@ Partial Class Form1
         Me.Panel1.Controls.Add(Me.st12)
         Me.Panel1.Controls.Add(Me.st38)
         Me.Panel1.Controls.Add(Me.st14)
-        Me.Panel1.Location = New System.Drawing.Point(120, 118)
+        Me.Panel1.Location = New System.Drawing.Point(120, 95)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(239, 31)
         Me.Panel1.TabIndex = 20
@@ -328,7 +308,7 @@ Partial Class Form1
         'Label18
         '
         Me.Label18.AutoSize = True
-        Me.Label18.Location = New System.Drawing.Point(13, 123)
+        Me.Label18.Location = New System.Drawing.Point(13, 100)
         Me.Label18.Name = "Label18"
         Me.Label18.Size = New System.Drawing.Size(76, 17)
         Me.Label18.TabIndex = 15
@@ -346,7 +326,7 @@ Partial Class Form1
         Me.Panel2.Controls.Add(Me.bar5)
         Me.Panel2.Controls.Add(Me.bar4)
         Me.Panel2.Controls.Add(Me.bar3)
-        Me.Panel2.Location = New System.Drawing.Point(120, 155)
+        Me.Panel2.Location = New System.Drawing.Point(120, 132)
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(239, 84)
         Me.Panel2.TabIndex = 22
@@ -436,35 +416,16 @@ Partial Class Form1
         'Label17
         '
         Me.Label17.AutoSize = True
-        Me.Label17.Location = New System.Drawing.Point(13, 160)
+        Me.Label17.Location = New System.Drawing.Point(13, 137)
         Me.Label17.Name = "Label17"
         Me.Label17.Size = New System.Drawing.Size(64, 17)
         Me.Label17.TabIndex = 21
         Me.Label17.Text = "Main Bar"
         '
-        'Label19
-        '
-        Me.Label19.AutoSize = True
-        Me.Label19.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label19.Location = New System.Drawing.Point(13, 450)
-        Me.Label19.Name = "Label19"
-        Me.Label19.Size = New System.Drawing.Size(230, 18)
-        Me.Label19.TabIndex = 27
-        Me.Label19.Text = "Design for Shear and Torsion"
-        '
-        'shear_button
-        '
-        Me.shear_button.Location = New System.Drawing.Point(16, 569)
-        Me.shear_button.Name = "shear_button"
-        Me.shear_button.Size = New System.Drawing.Size(88, 87)
-        Me.shear_button.TabIndex = 26
-        Me.shear_button.Text = "Design for Shear"
-        Me.shear_button.UseVisualStyleBackColor = True
-        '
         'Label20
         '
         Me.Label20.AutoSize = True
-        Me.Label20.Location = New System.Drawing.Point(13, 478)
+        Me.Label20.Location = New System.Drawing.Point(13, 309)
         Me.Label20.Name = "Label20"
         Me.Label20.Size = New System.Drawing.Size(165, 17)
         Me.Label20.TabIndex = 24
@@ -472,7 +433,7 @@ Partial Class Form1
         '
         'shearVu
         '
-        Me.shearVu.Location = New System.Drawing.Point(274, 475)
+        Me.shearVu.Location = New System.Drawing.Point(274, 306)
         Me.shearVu.Name = "shearVu"
         Me.shearVu.Size = New System.Drawing.Size(85, 22)
         Me.shearVu.TabIndex = 23
@@ -482,7 +443,7 @@ Partial Class Form1
         'Label21
         '
         Me.Label21.AutoSize = True
-        Me.Label21.Location = New System.Drawing.Point(365, 478)
+        Me.Label21.Location = New System.Drawing.Point(365, 309)
         Me.Label21.Name = "Label21"
         Me.Label21.Size = New System.Drawing.Size(28, 17)
         Me.Label21.TabIndex = 25
@@ -491,34 +452,25 @@ Partial Class Form1
         'Label22
         '
         Me.Label22.AutoSize = True
-        Me.Label22.Location = New System.Drawing.Point(13, 506)
+        Me.Label22.Location = New System.Drawing.Point(13, 337)
         Me.Label22.Name = "Label22"
-        Me.Label22.Size = New System.Drawing.Size(242, 17)
+        Me.Label22.Size = New System.Drawing.Size(235, 17)
         Me.Label22.TabIndex = 29
-        Me.Label22.Text = "Strength Reduction Factor, phi-shear"
+        Me.Label22.Text = "Strength Reduction Factor for shear"
         '
         'phi_shear
         '
-        Me.phi_shear.Location = New System.Drawing.Point(274, 503)
+        Me.phi_shear.Location = New System.Drawing.Point(274, 334)
         Me.phi_shear.Name = "phi_shear"
         Me.phi_shear.Size = New System.Drawing.Size(85, 22)
         Me.phi_shear.TabIndex = 28
         Me.phi_shear.Text = "0.75"
         Me.phi_shear.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
-        'shear_torsion_button
-        '
-        Me.shear_torsion_button.Location = New System.Drawing.Point(110, 569)
-        Me.shear_torsion_button.Name = "shear_torsion_button"
-        Me.shear_torsion_button.Size = New System.Drawing.Size(98, 87)
-        Me.shear_torsion_button.TabIndex = 33
-        Me.shear_torsion_button.Text = "Design for Shear and Torsion"
-        Me.shear_torsion_button.UseVisualStyleBackColor = True
-        '
         'Label12
         '
         Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(13, 534)
+        Me.Label12.Location = New System.Drawing.Point(13, 365)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(135, 17)
         Me.Label12.TabIndex = 31
@@ -526,7 +478,7 @@ Partial Class Form1
         '
         'torsionTu
         '
-        Me.torsionTu.Location = New System.Drawing.Point(274, 531)
+        Me.torsionTu.Location = New System.Drawing.Point(274, 362)
         Me.torsionTu.Name = "torsionTu"
         Me.torsionTu.Size = New System.Drawing.Size(85, 22)
         Me.torsionTu.TabIndex = 30
@@ -536,44 +488,83 @@ Partial Class Form1
         'Label23
         '
         Me.Label23.AutoSize = True
-        Me.Label23.Location = New System.Drawing.Point(365, 534)
+        Me.Label23.Location = New System.Drawing.Point(365, 365)
         Me.Label23.Name = "Label23"
         Me.Label23.Size = New System.Drawing.Size(59, 17)
         Me.Label23.TabIndex = 32
         Me.Label23.Text = "Kip-Inch"
         '
-        'shear_phiTcr_button
+        'Panel3
         '
-        Me.shear_phiTcr_button.Location = New System.Drawing.Point(216, 569)
-        Me.shear_phiTcr_button.Name = "shear_phiTcr_button"
-        Me.shear_phiTcr_button.Size = New System.Drawing.Size(144, 87)
-        Me.shear_phiTcr_button.TabIndex = 35
-        Me.shear_phiTcr_button.Text = "Design for Shear and Compatibility Torsion (phi-Tcr)"
-        Me.shear_phiTcr_button.UseVisualStyleBackColor = True
+        Me.Panel3.Controls.Add(Me.dShearTorsion2)
+        Me.Panel3.Controls.Add(Me.dShearTorsion)
+        Me.Panel3.Controls.Add(Me.dShear)
+        Me.Panel3.Controls.Add(Me.dFlexure)
+        Me.Panel3.Location = New System.Drawing.Point(-2, 390)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Size = New System.Drawing.Size(408, 125)
+        Me.Panel3.TabIndex = 36
+        '
+        'dFlexure
+        '
+        Me.dFlexure.AutoSize = True
+        Me.dFlexure.Checked = True
+        Me.dFlexure.Location = New System.Drawing.Point(16, 16)
+        Me.dFlexure.Name = "dFlexure"
+        Me.dFlexure.Size = New System.Drawing.Size(144, 21)
+        Me.dFlexure.TabIndex = 0
+        Me.dFlexure.TabStop = True
+        Me.dFlexure.Text = "Design for Flexure"
+        Me.dFlexure.UseVisualStyleBackColor = True
+        '
+        'dShear
+        '
+        Me.dShear.AutoSize = True
+        Me.dShear.Location = New System.Drawing.Point(16, 43)
+        Me.dShear.Name = "dShear"
+        Me.dShear.Size = New System.Drawing.Size(136, 21)
+        Me.dShear.TabIndex = 1
+        Me.dShear.Text = "Design for Shear"
+        Me.dShear.UseVisualStyleBackColor = True
+        '
+        'dShearTorsion
+        '
+        Me.dShearTorsion.AutoSize = True
+        Me.dShearTorsion.Location = New System.Drawing.Point(16, 70)
+        Me.dShearTorsion.Name = "dShearTorsion"
+        Me.dShearTorsion.Size = New System.Drawing.Size(216, 21)
+        Me.dShearTorsion.TabIndex = 2
+        Me.dShearTorsion.Text = "Design for Shear and Torsion"
+        Me.dShearTorsion.UseVisualStyleBackColor = True
+        '
+        'dShearTorsion2
+        '
+        Me.dShearTorsion2.AutoSize = True
+        Me.dShearTorsion2.Location = New System.Drawing.Point(17, 97)
+        Me.dShearTorsion2.Name = "dShearTorsion2"
+        Me.dShearTorsion2.Size = New System.Drawing.Size(358, 21)
+        Me.dShearTorsion2.TabIndex = 3
+        Me.dShearTorsion2.Text = "Design for Shear and Compatibility Torsion (phi-Tcr)"
+        Me.dShearTorsion2.UseVisualStyleBackColor = True
         '
         'Form1
         '
         Me.AcceptButton = Me.flexure_button
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1308, 692)
-        Me.Controls.Add(Me.shear_phiTcr_button)
-        Me.Controls.Add(Me.shear_torsion_button)
+        Me.ClientSize = New System.Drawing.Size(1308, 748)
+        Me.Controls.Add(Me.Panel3)
         Me.Controls.Add(Me.Label12)
         Me.Controls.Add(Me.torsionTu)
         Me.Controls.Add(Me.Label23)
         Me.Controls.Add(Me.Label22)
         Me.Controls.Add(Me.phi_shear)
-        Me.Controls.Add(Me.Label19)
-        Me.Controls.Add(Me.shear_button)
         Me.Controls.Add(Me.Label20)
         Me.Controls.Add(Me.shearVu)
         Me.Controls.Add(Me.Label21)
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Label17)
         Me.Controls.Add(Me.Panel1)
-        Me.Controls.Add(Me.Label16)
-        Me.Controls.Add(Me.Label15)
         Me.Controls.Add(Me.rtf)
         Me.Controls.Add(Me.Label18)
         Me.Controls.Add(Me.flexure_button)
@@ -602,6 +593,8 @@ Partial Class Form1
         Me.Panel1.PerformLayout()
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
+        Me.Panel3.ResumeLayout(False)
+        Me.Panel3.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -626,8 +619,6 @@ Partial Class Form1
     Friend WithEvents Label13 As System.Windows.Forms.Label
     Friend WithEvents momentMu As System.Windows.Forms.TextBox
     Friend WithEvents Label14 As System.Windows.Forms.Label
-    Friend WithEvents Label15 As System.Windows.Forms.Label
-    Friend WithEvents Label16 As System.Windows.Forms.Label
     Friend WithEvents st12 As System.Windows.Forms.RadioButton
     Friend WithEvents st38 As System.Windows.Forms.RadioButton
     Friend WithEvents st14 As System.Windows.Forms.RadioButton
@@ -643,17 +634,18 @@ Partial Class Form1
     Friend WithEvents Label17 As System.Windows.Forms.Label
     Friend WithEvents bar10 As System.Windows.Forms.RadioButton
     Friend WithEvents bar9 As System.Windows.Forms.RadioButton
-    Friend WithEvents Label19 As System.Windows.Forms.Label
-    Friend WithEvents shear_button As System.Windows.Forms.Button
     Friend WithEvents Label20 As System.Windows.Forms.Label
     Friend WithEvents shearVu As System.Windows.Forms.TextBox
     Friend WithEvents Label21 As System.Windows.Forms.Label
     Friend WithEvents Label22 As System.Windows.Forms.Label
     Friend WithEvents phi_shear As System.Windows.Forms.TextBox
-    Friend WithEvents shear_torsion_button As System.Windows.Forms.Button
     Friend WithEvents Label12 As System.Windows.Forms.Label
     Friend WithEvents torsionTu As System.Windows.Forms.TextBox
     Friend WithEvents Label23 As System.Windows.Forms.Label
-    Friend WithEvents shear_phiTcr_button As System.Windows.Forms.Button
+    Friend WithEvents Panel3 As System.Windows.Forms.Panel
+    Friend WithEvents dShearTorsion2 As System.Windows.Forms.RadioButton
+    Friend WithEvents dShearTorsion As System.Windows.Forms.RadioButton
+    Friend WithEvents dShear As System.Windows.Forms.RadioButton
+    Friend WithEvents dFlexure As System.Windows.Forms.RadioButton
 
 End Class

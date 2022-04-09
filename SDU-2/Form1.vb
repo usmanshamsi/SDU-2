@@ -7,8 +7,98 @@ Public Class Form1
     End Sub
 
     Private Sub flexure_button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles flexure_button.Click
+        Select Case True
+            Case dFlexure.Checked
+                design_for_flexure()
+
+            Case dShear.Checked
+                design_for_shear()
+
+            Case dShearTorsion.Checked
+                'design_for_shear_and_torsion(False)
+
+            Case dShearTorsion2.Checked
+                'design_for_shear_and_torsion(True)
+
+        End Select
+
+
+        
+
+
+
+    End Sub
+
+    Private Sub Output(ByVal parameter As String, ByVal value As Double, ByVal unit As String)
+        rtf.AppendText(parameter & " = " & value.ToString("0.0#") & " " & unit & vbCrLf)
+    End Sub
+    Private Sub Output(ByVal parameter As String, ByVal value As Double, ByVal format As String, ByVal unit As String)
+        rtf.AppendText(parameter & " = " & value.ToString(format) & " " & unit & vbCrLf)
+    End Sub
+    Private Sub Output(ByVal parameter As String, ByVal value1 As Double, ByVal unit1 As String, ByVal value2 As Double, ByVal unit2 As String)
+        rtf.AppendText(parameter & " = " & value1.ToString("0.0#") & " " & unit1 & " = " & value2.ToString("0.0#") & " " & unit2 & vbCrLf)
+    End Sub
+    Private Sub Output(ByVal parameter As String, ByVal value1 As Double, ByVal format1 As String, ByVal unit1 As String, ByVal value2 As Double, ByVal format2 As String, ByVal unit2 As String)
+        rtf.AppendText(parameter & " = " & value1.ToString(format1) & " " & unit1 & " = " & value2.ToString(format2) & " " & unit2 & vbCrLf)
+    End Sub
+    Private Sub Info(ByVal text As String)
+        rtf.AppendText(text & vbCrLf)
+    End Sub
+    Private Sub br()
+        rtf.AppendText(vbCrLf)
+    End Sub
+    Private Sub _blue()
+        rtf.SelectionColor = Color.Blue
+    End Sub
+    Private Sub _red()
+        rtf.SelectionBackColor = Color.Red
+        'rtf.SelectionColor = Color.DarkRed
+    End Sub
+    Private Sub _green()
+        rtf.SelectionBackColor = Color.Yellow
+        'rtf.SelectionColor = Color.DarkGreen
+
+    End Sub
+    Private Sub _black()
+        rtf.SelectionColor = Color.Black
+    End Sub
+
+    Function CalculateBeta1(ByVal fc As Double) As Double
+
+        ' fc in psi
+
+        If (fc <= 4000) Then
+
+            Return 0.85
+
+        ElseIf (fc >= 8000) Then
+
+            Return 0.65
+
+        Else
+
+            Return 0.85 - (fc - 4000) / 1000 * 0.05
+
+        End If
+    End Function
+
+    Function Phi_flexure(ByVal epsilon_t As Double) As Double
+
+        ' epsilon_t is the strain in tension fibre
+
+        If (epsilon_t >= 0.005) Then
+
+            Return 0.9
+
+        Else
+            Return 0.65 + (epsilon_t - 0.002) * (250.0 / 3.0)
+
+        End If
+    End Function
+
+    Sub design_for_flexure()
         Dim b, h, cc, d, fc, fy, mu As Double
-        Dim stdia, bardia As double
+        Dim stdia, bardia As Double
         Try
             b = Convert.ToDouble(beam_width.Text)
             h = Convert.ToDouble(beam_depth.Text)
@@ -112,106 +202,15 @@ Public Class Form1
         br()
 
         If rho_calc > rho_max Then
-            _red(): Info("Calculated reinforcement is more than maximum allowed (rho-calc > rho-max). Revise section.")
+            _red() : Info("Calculated reinforcement is more than maximum allowed (rho-calc > rho-max). Revise section.")
         Else
             Dim rho As Double = Math.Max(rho_calc, Math.Min(rho_min, 4 * rho_calc / 3))
             _green() : Output("Reinforcement to be provided, As", rho * b * d, "sq.inch")
             _green() : Output("rho", rho * 100, "%")
         End If
-
-
-
     End Sub
 
-    Private Sub Output(ByVal parameter As String, ByVal value As Double, ByVal unit As String)
-        rtf.AppendText(parameter & " = " & value.ToString("0.0#") & " " & unit & vbCrLf)
-    End Sub
-    Private Sub Output(ByVal parameter As String, ByVal value As Double, ByVal format As String, ByVal unit As String)
-        rtf.AppendText(parameter & " = " & value.ToString(format) & " " & unit & vbCrLf)
-    End Sub
-    Private Sub Output(ByVal parameter As String, ByVal value1 As Double, ByVal unit1 As String, ByVal value2 As Double, ByVal unit2 As String)
-        rtf.AppendText(parameter & " = " & value1.ToString("0.0#") & " " & unit1 & " = " & value2.ToString("0.0#") & " " & unit2 & vbCrLf)
-    End Sub
-    Private Sub Output(ByVal parameter As String, ByVal value1 As Double, ByVal format1 As String, ByVal unit1 As String, ByVal value2 As Double, ByVal format2 As String, ByVal unit2 As String)
-        rtf.AppendText(parameter & " = " & value1.ToString(format1) & " " & unit1 & " = " & value2.ToString(format2) & " " & unit2 & vbCrLf)
-    End Sub
-    Private Sub Info(ByVal text As String)
-        rtf.AppendText(text & vbCrLf)
-    End Sub
-    Private Sub br()
-        rtf.AppendText(vbCrLf)
-    End Sub
-    Private Sub _blue()
-        rtf.SelectionColor = Color.Blue
-    End Sub
-    Private Sub _red()
-        rtf.SelectionBackColor = Color.Red
-        'rtf.SelectionColor = Color.DarkRed
-    End Sub
-    Private Sub _green()
-        rtf.SelectionBackColor = Color.Yellow
-        'rtf.SelectionColor = Color.DarkGreen
-
-    End Sub
-    Private Sub _black()
-        rtf.SelectionColor = Color.Black
-    End Sub
-
-    Function CalculateBeta1(ByVal fc As Double) As Double
-
-        ' fc in psi
-
-        If (fc <= 4000) Then
-
-            Return 0.85
-
-        ElseIf (fc >= 8000) Then
-
-            Return 0.65
-
-        Else
-
-            Return 0.85 - (fc - 4000) / 1000 * 0.05
-
-        End If
-    End Function
-
-    Function Phi_flexure(ByVal epsilon_t As Double) As Double
-
-        ' epsilon_t is the strain in tension fibre
-
-        If (epsilon_t >= 0.005) Then
-
-            Return 0.9
-
-        Else
-            Return 0.65 + (epsilon_t - 0.002) * (250.0 / 3.0)
-
-        End If
-    End Function
-
-
-
-
-
-    Private Sub beam_width_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles beam_width.Enter, beam_width.Click, _
-        beam_depth.Enter, beam_depth.Click, clear_cover.Enter, clear_cover.Click, conc_fc.Enter, conc_fc.Click, steel_fy.Enter, steel_fy.Click, _
-          momentMu.Enter, momentMu.Click, shearVu.Enter, shearVu.Click, phi_shear.Enter, phi_shear.Click, torsionTu.Enter, torsionTu.Click
-
-        sender.SelectAll()
-
-    End Sub
-
-    Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        FormSerialisor.Deserialise(Me, Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) & "\sdu2-data.xml")
-    End Sub
-
-
-    Private Sub Form1_FormClosing(ByVal sender As System.Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles MyBase.FormClosing
-        FormSerialisor.Serialise(Me, Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) & "\sdu2-data.xml")
-    End Sub
-
-    Private Sub shear_button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles shear_button.Click
+    Sub design_for_shear()
         Dim b, h, cc, d, fc, fy, vu, phi As Double
         Dim stdia, bardia As Double
         Try
@@ -325,4 +324,24 @@ Public Class Form1
 
 
     End Sub
+
+
+    Private Sub beam_width_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles beam_width.Enter, beam_width.Click, _
+        beam_depth.Enter, beam_depth.Click, clear_cover.Enter, clear_cover.Click, conc_fc.Enter, conc_fc.Click, steel_fy.Enter, steel_fy.Click, _
+          momentMu.Enter, momentMu.Click, shearVu.Enter, shearVu.Click, phi_shear.Enter, phi_shear.Click, torsionTu.Enter, torsionTu.Click
+
+        sender.SelectAll()
+
+    End Sub
+
+    Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        FormSerialisor.Deserialise(Me, Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) & "\sdu2-data.xml")
+    End Sub
+
+
+    Private Sub Form1_FormClosing(ByVal sender As System.Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles MyBase.FormClosing
+        FormSerialisor.Serialise(Me, Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) & "\sdu2-data.xml")
+    End Sub
+
+    
 End Class
