@@ -196,7 +196,7 @@ Public Class Form1
 
     Private Sub beam_width_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles beam_width.Enter, beam_width.Click, _
         beam_depth.Enter, beam_depth.Click, clear_cover.Enter, clear_cover.Click, conc_fc.Enter, conc_fc.Click, steel_fy.Enter, steel_fy.Click, _
-          momentMu.Enter, momentMu.Click
+          momentMu.Enter, momentMu.Click, shearVu.Enter, shearVu.Click, phi_shear.Enter, phi_shear.Click, torsionTu.Enter, torsionTu.Click
 
         sender.SelectAll()
 
@@ -209,5 +209,120 @@ Public Class Form1
 
     Private Sub Form1_FormClosing(ByVal sender As System.Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles MyBase.FormClosing
         FormSerialisor.Serialise(Me, Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) & "\sdu2-data.xml")
+    End Sub
+
+    Private Sub shear_button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles shear_button.Click
+        Dim b, h, cc, d, fc, fy, vu, phi As Double
+        Dim stdia, bardia As Double
+        Try
+            b = Convert.ToDouble(beam_width.Text)
+            h = Convert.ToDouble(beam_depth.Text)
+            cc = Convert.ToDouble(clear_cover.Text)
+
+            fc = Convert.ToDouble(conc_fc.Text)
+            fy = Convert.ToDouble(steel_fy.Text)
+
+            vu = Convert.ToDouble(shearVu.Text) * 1000.0 ' converted from kip to lbs
+            phi = Convert.ToDouble(phi_shear.Text)
+
+            Select Case True
+                Case st14.Checked
+                    stdia = 1.0 / 4
+                Case st38.Checked
+                    stdia = 3.0 / 8
+                Case st12.Checked
+                    stdia = 1.0 / 2
+            End Select
+
+            Select Case True
+                Case bar3.Checked
+                    bardia = 3 / 8.0
+                Case bar4.Checked
+                    bardia = 4 / 8.0
+                Case bar5.Checked
+                    bardia = 5 / 8.0
+                Case bar6.Checked
+                    bardia = 6 / 8.0
+                Case bar7.Checked
+                    bardia = 7 / 8.0
+                Case bar8.Checked
+                    bardia = 8 / 8.0
+                Case bar9.Checked
+                    bardia = 9 / 8.0
+                Case bar10.Checked
+                    bardia = 10 / 8.0
+            End Select
+
+            d = h - cc - stdia - bardia / 2.0
+
+
+        Catch ex As Exception
+            MsgBox(ex.Message, vbOKOnly, "Error in inputs")
+        End Try
+
+        'print inputs
+        rtf.Clear()
+
+        rtf.AppendText("I N P U T S" & vbCrLf)
+        rtf.AppendText("-----------" & vbCrLf)
+        _blue() : Output("Width of beam, b", b, "inch")
+        _blue() : Output("Depth of beam, h", h, "inch")
+        _blue() : Output("Clear Cover", cc, "inch")
+        _blue() : Output("Stirrup Bar Diameter", stdia, "0.0##", "inch")
+        _blue() : Output("Main Bar Diameter", bardia, "0.0##", "inch")
+        _blue() : Output("Specified Strength of Concrete, f'c", fc, "psi")
+        _blue() : Output("Yield Strength of reinforcement, fy", fy, "psi")
+        _blue() : Output("Design Shear Force, Vu", vu / 1000.0, "kip")
+        _blue() : Output("Strength Reduction Factor, phi-shear", phi, "")
+        br()
+
+
+        'print calculations and results
+
+        rtf.AppendText("O U T P U T S" & vbCrLf)
+        rtf.AppendText("-------------" & vbCrLf)
+
+        Output("Effective depth of beam, d", d, "inch")
+        br()
+
+        Dim av_over_s_1, av_over_s_2, av_over_s_min, av_over_s As Double
+        Dim rootfc As Double = Math.Sqrt(fc)
+        av_over_s_1 = 50 * b / fy
+        av_over_s_2 = 0.75 * rootfc * b / fy
+        av_over_s_min = Math.Max(av_over_s_1, av_over_s_2)
+        Dim vc As Double = 2 * rootfc * b * d
+
+        Output("Shear capacity of provided section, Vc", vc / 1000, "kip")
+        Output("phi*Vc", phi * vc / 1000, "kip")
+        br()
+
+        If vu < phi * vc / 2 Then
+            _green() : Info("Vu < (phi * Vc) / 2, No shear reinforcement is required.")
+        ElseIf vu <= phi * vc Then
+            av_over_s = av_over_s_min
+            _green() : Output("Minimum Shear Reinforcement required, Av/S", av_over_s, "0.0#####", "sq.inch/inch")
+            Dim spacing As Double = stdia / av_over_s
+            _green() : Output("Required stirrup spacing", spacing, "inch")
+            br()
+        Else
+            Dim vs As Double = (vu - phi * vc) / phi
+            Output("Vs = (Vu - phi*Vc)/phi", vs / 1000, "kip")
+            br()
+
+            If vs > 4 * vc Then
+                _red() : Info("Vs > 4 * Vc, Section need to be revised")
+            Else
+                av_over_s = vs / (fy * d)
+                av_over_s = Math.Max(av_over_s, av_over_s_min)
+                _green() : Output("Shear Reinforcement required, Av/S", av_over_s, "0.######", "sq.inch / inch")
+                Dim spacing As Double = stdia / av_over_s
+                _green() : Output("Required stirrup spacing", spacing, "inch")
+            End If
+        End If
+
+
+
+
+
     End Sub
 End Class

@@ -220,16 +220,16 @@ Partial Class Form1
         Me.rtf.Font = New System.Drawing.Font("Consolas", 10.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.rtf.Location = New System.Drawing.Point(430, 10)
         Me.rtf.Name = "rtf"
-        Me.rtf.Size = New System.Drawing.Size(866, 694)
+        Me.rtf.Size = New System.Drawing.Size(866, 670)
         Me.rtf.TabIndex = 0
         Me.rtf.TabStop = False
         Me.rtf.Text = ""
         '
         'flexure_button
         '
-        Me.flexure_button.Location = New System.Drawing.Point(182, 385)
+        Me.flexure_button.Location = New System.Drawing.Point(216, 385)
         Me.flexure_button.Name = "flexure_button"
-        Me.flexure_button.Size = New System.Drawing.Size(177, 34)
+        Me.flexure_button.Size = New System.Drawing.Size(143, 31)
         Me.flexure_button.TabIndex = 6
         Me.flexure_button.Text = "Design for Flexure"
         Me.flexure_button.UseVisualStyleBackColor = True
@@ -446,7 +446,7 @@ Partial Class Form1
         '
         Me.Label19.AutoSize = True
         Me.Label19.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label19.Location = New System.Drawing.Point(13, 433)
+        Me.Label19.Location = New System.Drawing.Point(13, 450)
         Me.Label19.Name = "Label19"
         Me.Label19.Size = New System.Drawing.Size(230, 18)
         Me.Label19.TabIndex = 27
@@ -454,9 +454,9 @@ Partial Class Form1
         '
         'shear_button
         '
-        Me.shear_button.Location = New System.Drawing.Point(182, 552)
+        Me.shear_button.Location = New System.Drawing.Point(16, 569)
         Me.shear_button.Name = "shear_button"
-        Me.shear_button.Size = New System.Drawing.Size(177, 34)
+        Me.shear_button.Size = New System.Drawing.Size(88, 87)
         Me.shear_button.TabIndex = 26
         Me.shear_button.Text = "Design for Shear"
         Me.shear_button.UseVisualStyleBackColor = True
@@ -464,7 +464,7 @@ Partial Class Form1
         'Label20
         '
         Me.Label20.AutoSize = True
-        Me.Label20.Location = New System.Drawing.Point(13, 461)
+        Me.Label20.Location = New System.Drawing.Point(13, 478)
         Me.Label20.Name = "Label20"
         Me.Label20.Size = New System.Drawing.Size(165, 17)
         Me.Label20.TabIndex = 24
@@ -472,7 +472,7 @@ Partial Class Form1
         '
         'shearVu
         '
-        Me.shearVu.Location = New System.Drawing.Point(274, 458)
+        Me.shearVu.Location = New System.Drawing.Point(274, 475)
         Me.shearVu.Name = "shearVu"
         Me.shearVu.Size = New System.Drawing.Size(85, 22)
         Me.shearVu.TabIndex = 23
@@ -482,7 +482,7 @@ Partial Class Form1
         'Label21
         '
         Me.Label21.AutoSize = True
-        Me.Label21.Location = New System.Drawing.Point(365, 461)
+        Me.Label21.Location = New System.Drawing.Point(365, 478)
         Me.Label21.Name = "Label21"
         Me.Label21.Size = New System.Drawing.Size(28, 17)
         Me.Label21.TabIndex = 25
@@ -491,7 +491,7 @@ Partial Class Form1
         'Label22
         '
         Me.Label22.AutoSize = True
-        Me.Label22.Location = New System.Drawing.Point(13, 489)
+        Me.Label22.Location = New System.Drawing.Point(13, 506)
         Me.Label22.Name = "Label22"
         Me.Label22.Size = New System.Drawing.Size(242, 17)
         Me.Label22.TabIndex = 29
@@ -499,7 +499,7 @@ Partial Class Form1
         '
         'phi_shear
         '
-        Me.phi_shear.Location = New System.Drawing.Point(274, 486)
+        Me.phi_shear.Location = New System.Drawing.Point(274, 503)
         Me.phi_shear.Name = "phi_shear"
         Me.phi_shear.Size = New System.Drawing.Size(85, 22)
         Me.phi_shear.TabIndex = 28
@@ -508,9 +508,9 @@ Partial Class Form1
         '
         'shear_torsion_button
         '
-        Me.shear_torsion_button.Location = New System.Drawing.Point(182, 592)
+        Me.shear_torsion_button.Location = New System.Drawing.Point(110, 569)
         Me.shear_torsion_button.Name = "shear_torsion_button"
-        Me.shear_torsion_button.Size = New System.Drawing.Size(177, 47)
+        Me.shear_torsion_button.Size = New System.Drawing.Size(98, 87)
         Me.shear_torsion_button.TabIndex = 33
         Me.shear_torsion_button.Text = "Design for Shear and Torsion"
         Me.shear_torsion_button.UseVisualStyleBackColor = True
@@ -518,7 +518,7 @@ Partial Class Form1
         'Label12
         '
         Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(13, 517)
+        Me.Label12.Location = New System.Drawing.Point(13, 534)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(135, 17)
         Me.Label12.TabIndex = 31
@@ -526,7 +526,7 @@ Partial Class Form1
         '
         'torsionTu
         '
-        Me.torsionTu.Location = New System.Drawing.Point(274, 514)
+        Me.torsionTu.Location = New System.Drawing.Point(274, 531)
         Me.torsionTu.Name = "torsionTu"
         Me.torsionTu.Size = New System.Drawing.Size(85, 22)
         Me.torsionTu.TabIndex = 30
@@ -536,7 +536,7 @@ Partial Class Form1
         'Label23
         '
         Me.Label23.AutoSize = True
-        Me.Label23.Location = New System.Drawing.Point(365, 517)
+        Me.Label23.Location = New System.Drawing.Point(365, 534)
         Me.Label23.Name = "Label23"
         Me.Label23.Size = New System.Drawing.Size(59, 17)
         Me.Label23.TabIndex = 32
@@ -544,9 +544,9 @@ Partial Class Form1
         '
         'shear_phiTcr_button
         '
-        Me.shear_phiTcr_button.Location = New System.Drawing.Point(182, 645)
+        Me.shear_phiTcr_button.Location = New System.Drawing.Point(216, 569)
         Me.shear_phiTcr_button.Name = "shear_phiTcr_button"
-        Me.shear_phiTcr_button.Size = New System.Drawing.Size(177, 65)
+        Me.shear_phiTcr_button.Size = New System.Drawing.Size(144, 87)
         Me.shear_phiTcr_button.TabIndex = 35
         Me.shear_phiTcr_button.Text = "Design for Shear and Compatibility Torsion (phi-Tcr)"
         Me.shear_phiTcr_button.UseVisualStyleBackColor = True
@@ -556,7 +556,7 @@ Partial Class Form1
         Me.AcceptButton = Me.flexure_button
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1308, 716)
+        Me.ClientSize = New System.Drawing.Size(1308, 692)
         Me.Controls.Add(Me.shear_phiTcr_button)
         Me.Controls.Add(Me.shear_torsion_button)
         Me.Controls.Add(Me.Label12)
