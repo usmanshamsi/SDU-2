@@ -39,7 +39,7 @@ Partial Class Form1
         Me.Label4 = New System.Windows.Forms.Label()
         Me.beam_depth = New System.Windows.Forms.TextBox()
         Me.rtf = New System.Windows.Forms.RichTextBox()
-        Me.flexure_button = New System.Windows.Forms.Button()
+        Me.design_button = New System.Windows.Forms.Button()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.momentMu = New System.Windows.Forms.TextBox()
         Me.Label14 = New System.Windows.Forms.Label()
@@ -67,13 +67,16 @@ Partial Class Form1
         Me.torsionTu = New System.Windows.Forms.TextBox()
         Me.Label23 = New System.Windows.Forms.Label()
         Me.Panel3 = New System.Windows.Forms.Panel()
-        Me.dFlexure = New System.Windows.Forms.RadioButton()
-        Me.dShear = New System.Windows.Forms.RadioButton()
         Me.dShearTorsion = New System.Windows.Forms.RadioButton()
-        Me.dShearTorsion2 = New System.Windows.Forms.RadioButton()
+        Me.dShear = New System.Windows.Forms.RadioButton()
+        Me.dFlexure = New System.Windows.Forms.RadioButton()
+        Me.Panel4 = New System.Windows.Forms.Panel()
+        Me.limitTu_checkbox = New System.Windows.Forms.CheckBox()
+        Me.print_input_checkbox = New System.Windows.Forms.CheckBox()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.Panel3.SuspendLayout()
+        Me.Panel4.SuspendLayout()
         Me.SuspendLayout()
         '
         'Label1
@@ -126,7 +129,7 @@ Partial Class Form1
         Me.steel_fy.Location = New System.Drawing.Point(274, 250)
         Me.steel_fy.Name = "steel_fy"
         Me.steel_fy.Size = New System.Drawing.Size(85, 22)
-        Me.steel_fy.TabIndex = 4
+        Me.steel_fy.TabIndex = 6
         Me.steel_fy.Text = "60000"
         Me.steel_fy.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -153,7 +156,7 @@ Partial Class Form1
         Me.conc_fc.Location = New System.Drawing.Point(274, 222)
         Me.conc_fc.Name = "conc_fc"
         Me.conc_fc.Size = New System.Drawing.Size(85, 22)
-        Me.conc_fc.TabIndex = 3
+        Me.conc_fc.TabIndex = 5
         Me.conc_fc.Text = "3000"
         Me.conc_fc.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -213,26 +216,24 @@ Partial Class Form1
         '
         'rtf
         '
-        Me.rtf.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-                    Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.rtf.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.rtf.Dock = System.Windows.Forms.DockStyle.Fill
         Me.rtf.Font = New System.Drawing.Font("Consolas", 10.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.rtf.Location = New System.Drawing.Point(430, 10)
+        Me.rtf.Location = New System.Drawing.Point(10, 10)
         Me.rtf.Name = "rtf"
-        Me.rtf.Size = New System.Drawing.Size(866, 726)
+        Me.rtf.Size = New System.Drawing.Size(844, 702)
         Me.rtf.TabIndex = 0
         Me.rtf.TabStop = False
         Me.rtf.Text = ""
         '
-        'flexure_button
+        'design_button
         '
-        Me.flexure_button.Location = New System.Drawing.Point(15, 521)
-        Me.flexure_button.Name = "flexure_button"
-        Me.flexure_button.Size = New System.Drawing.Size(143, 36)
-        Me.flexure_button.TabIndex = 6
-        Me.flexure_button.Text = "Design"
-        Me.flexure_button.UseVisualStyleBackColor = True
+        Me.design_button.Location = New System.Drawing.Point(14, 521)
+        Me.design_button.Name = "design_button"
+        Me.design_button.Size = New System.Drawing.Size(143, 36)
+        Me.design_button.TabIndex = 13
+        Me.design_button.Text = "Design"
+        Me.design_button.UseVisualStyleBackColor = True
         '
         'Label13
         '
@@ -248,7 +249,7 @@ Partial Class Form1
         Me.momentMu.Location = New System.Drawing.Point(274, 278)
         Me.momentMu.Name = "momentMu"
         Me.momentMu.Size = New System.Drawing.Size(85, 22)
-        Me.momentMu.TabIndex = 0
+        Me.momentMu.TabIndex = 7
         Me.momentMu.Text = "50"
         Me.momentMu.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -303,7 +304,7 @@ Partial Class Form1
         Me.Panel1.Location = New System.Drawing.Point(120, 95)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(239, 31)
-        Me.Panel1.TabIndex = 20
+        Me.Panel1.TabIndex = 3
         '
         'Label18
         '
@@ -329,7 +330,7 @@ Partial Class Form1
         Me.Panel2.Location = New System.Drawing.Point(120, 132)
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(239, 84)
-        Me.Panel2.TabIndex = 22
+        Me.Panel2.TabIndex = 4
         '
         'bar10
         '
@@ -436,7 +437,7 @@ Partial Class Form1
         Me.shearVu.Location = New System.Drawing.Point(274, 306)
         Me.shearVu.Name = "shearVu"
         Me.shearVu.Size = New System.Drawing.Size(85, 22)
-        Me.shearVu.TabIndex = 23
+        Me.shearVu.TabIndex = 8
         Me.shearVu.Text = "50"
         Me.shearVu.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -463,7 +464,7 @@ Partial Class Form1
         Me.phi_shear.Location = New System.Drawing.Point(274, 334)
         Me.phi_shear.Name = "phi_shear"
         Me.phi_shear.Size = New System.Drawing.Size(85, 22)
-        Me.phi_shear.TabIndex = 28
+        Me.phi_shear.TabIndex = 9
         Me.phi_shear.Text = "0.75"
         Me.phi_shear.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -481,7 +482,7 @@ Partial Class Form1
         Me.torsionTu.Location = New System.Drawing.Point(274, 362)
         Me.torsionTu.Name = "torsionTu"
         Me.torsionTu.Size = New System.Drawing.Size(85, 22)
-        Me.torsionTu.TabIndex = 30
+        Me.torsionTu.TabIndex = 10
         Me.torsionTu.Text = "100"
         Me.torsionTu.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -496,14 +497,34 @@ Partial Class Form1
         '
         'Panel3
         '
-        Me.Panel3.Controls.Add(Me.dShearTorsion2)
+        Me.Panel3.Controls.Add(Me.limitTu_checkbox)
         Me.Panel3.Controls.Add(Me.dShearTorsion)
         Me.Panel3.Controls.Add(Me.dShear)
         Me.Panel3.Controls.Add(Me.dFlexure)
         Me.Panel3.Location = New System.Drawing.Point(-2, 390)
         Me.Panel3.Name = "Panel3"
         Me.Panel3.Size = New System.Drawing.Size(408, 125)
-        Me.Panel3.TabIndex = 36
+        Me.Panel3.TabIndex = 11
+        '
+        'dShearTorsion
+        '
+        Me.dShearTorsion.AutoSize = True
+        Me.dShearTorsion.Location = New System.Drawing.Point(16, 70)
+        Me.dShearTorsion.Name = "dShearTorsion"
+        Me.dShearTorsion.Size = New System.Drawing.Size(216, 21)
+        Me.dShearTorsion.TabIndex = 2
+        Me.dShearTorsion.Text = "Design for Shear and Torsion"
+        Me.dShearTorsion.UseVisualStyleBackColor = True
+        '
+        'dShear
+        '
+        Me.dShear.AutoSize = True
+        Me.dShear.Location = New System.Drawing.Point(16, 43)
+        Me.dShear.Name = "dShear"
+        Me.dShear.Size = New System.Drawing.Size(136, 21)
+        Me.dShear.TabIndex = 1
+        Me.dShear.Text = "Design for Shear"
+        Me.dShear.UseVisualStyleBackColor = True
         '
         'dFlexure
         '
@@ -517,42 +538,49 @@ Partial Class Form1
         Me.dFlexure.Text = "Design for Flexure"
         Me.dFlexure.UseVisualStyleBackColor = True
         '
-        'dShear
+        'Panel4
         '
-        Me.dShear.AutoSize = True
-        Me.dShear.Location = New System.Drawing.Point(16, 43)
-        Me.dShear.Name = "dShear"
-        Me.dShear.Size = New System.Drawing.Size(136, 21)
-        Me.dShear.TabIndex = 1
-        Me.dShear.Text = "Design for Shear"
-        Me.dShear.UseVisualStyleBackColor = True
+        Me.Panel4.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+                    Or System.Windows.Forms.AnchorStyles.Left) _
+                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Panel4.AutoSize = True
+        Me.Panel4.BackColor = System.Drawing.Color.White
+        Me.Panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel4.Controls.Add(Me.rtf)
+        Me.Panel4.Location = New System.Drawing.Point(430, 12)
+        Me.Panel4.Name = "Panel4"
+        Me.Panel4.Padding = New System.Windows.Forms.Padding(10)
+        Me.Panel4.Size = New System.Drawing.Size(866, 724)
+        Me.Panel4.TabIndex = 37
         '
-        'dShearTorsion
+        'limitTu_checkbox
         '
-        Me.dShearTorsion.AutoSize = True
-        Me.dShearTorsion.Location = New System.Drawing.Point(16, 70)
-        Me.dShearTorsion.Name = "dShearTorsion"
-        Me.dShearTorsion.Size = New System.Drawing.Size(216, 21)
-        Me.dShearTorsion.TabIndex = 2
-        Me.dShearTorsion.Text = "Design for Shear and Torsion"
-        Me.dShearTorsion.UseVisualStyleBackColor = True
+        Me.limitTu_checkbox.AutoSize = True
+        Me.limitTu_checkbox.Location = New System.Drawing.Point(40, 98)
+        Me.limitTu_checkbox.Name = "limitTu_checkbox"
+        Me.limitTu_checkbox.Size = New System.Drawing.Size(338, 21)
+        Me.limitTu_checkbox.TabIndex = 3
+        Me.limitTu_checkbox.Text = "Limit Design Tu to Compatibility Torsion (phi*Tcr)"
+        Me.limitTu_checkbox.UseVisualStyleBackColor = True
         '
-        'dShearTorsion2
+        'print_input_checkbox
         '
-        Me.dShearTorsion2.AutoSize = True
-        Me.dShearTorsion2.Location = New System.Drawing.Point(17, 97)
-        Me.dShearTorsion2.Name = "dShearTorsion2"
-        Me.dShearTorsion2.Size = New System.Drawing.Size(358, 21)
-        Me.dShearTorsion2.TabIndex = 3
-        Me.dShearTorsion2.Text = "Design for Shear and Compatibility Torsion (phi-Tcr)"
-        Me.dShearTorsion2.UseVisualStyleBackColor = True
+        Me.print_input_checkbox.AutoSize = True
+        Me.print_input_checkbox.Location = New System.Drawing.Point(305, 530)
+        Me.print_input_checkbox.Name = "print_input_checkbox"
+        Me.print_input_checkbox.Size = New System.Drawing.Size(101, 21)
+        Me.print_input_checkbox.TabIndex = 12
+        Me.print_input_checkbox.Text = "Print Inputs"
+        Me.print_input_checkbox.UseVisualStyleBackColor = True
         '
         'Form1
         '
-        Me.AcceptButton = Me.flexure_button
+        Me.AcceptButton = Me.design_button
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1308, 748)
+        Me.Controls.Add(Me.print_input_checkbox)
+        Me.Controls.Add(Me.Panel4)
         Me.Controls.Add(Me.Panel3)
         Me.Controls.Add(Me.Label12)
         Me.Controls.Add(Me.torsionTu)
@@ -565,9 +593,8 @@ Partial Class Form1
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Label17)
         Me.Controls.Add(Me.Panel1)
-        Me.Controls.Add(Me.rtf)
         Me.Controls.Add(Me.Label18)
-        Me.Controls.Add(Me.flexure_button)
+        Me.Controls.Add(Me.design_button)
         Me.Controls.Add(Me.Label9)
         Me.Controls.Add(Me.Label14)
         Me.Controls.Add(Me.Label1)
@@ -595,6 +622,7 @@ Partial Class Form1
         Me.Panel2.PerformLayout()
         Me.Panel3.ResumeLayout(False)
         Me.Panel3.PerformLayout()
+        Me.Panel4.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -615,7 +643,7 @@ Partial Class Form1
     Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents beam_depth As System.Windows.Forms.TextBox
     Friend WithEvents rtf As System.Windows.Forms.RichTextBox
-    Friend WithEvents flexure_button As System.Windows.Forms.Button
+    Friend WithEvents design_button As System.Windows.Forms.Button
     Friend WithEvents Label13 As System.Windows.Forms.Label
     Friend WithEvents momentMu As System.Windows.Forms.TextBox
     Friend WithEvents Label14 As System.Windows.Forms.Label
@@ -643,9 +671,11 @@ Partial Class Form1
     Friend WithEvents torsionTu As System.Windows.Forms.TextBox
     Friend WithEvents Label23 As System.Windows.Forms.Label
     Friend WithEvents Panel3 As System.Windows.Forms.Panel
-    Friend WithEvents dShearTorsion2 As System.Windows.Forms.RadioButton
     Friend WithEvents dShearTorsion As System.Windows.Forms.RadioButton
     Friend WithEvents dShear As System.Windows.Forms.RadioButton
     Friend WithEvents dFlexure As System.Windows.Forms.RadioButton
+    Friend WithEvents Panel4 As System.Windows.Forms.Panel
+    Friend WithEvents limitTu_checkbox As System.Windows.Forms.CheckBox
+    Friend WithEvents print_input_checkbox As System.Windows.Forms.CheckBox
 
 End Class
