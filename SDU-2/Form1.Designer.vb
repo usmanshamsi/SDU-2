@@ -67,12 +67,13 @@ Partial Class Form1
         Me.torsionTu = New System.Windows.Forms.TextBox()
         Me.Label23 = New System.Windows.Forms.Label()
         Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.limitTu_checkbox = New System.Windows.Forms.CheckBox()
         Me.dShearTorsion = New System.Windows.Forms.RadioButton()
         Me.dShear = New System.Windows.Forms.RadioButton()
         Me.dFlexure = New System.Windows.Forms.RadioButton()
         Me.Panel4 = New System.Windows.Forms.Panel()
-        Me.limitTu_checkbox = New System.Windows.Forms.CheckBox()
         Me.print_input_checkbox = New System.Windows.Forms.CheckBox()
+        Me.Label11 = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.Panel3.SuspendLayout()
@@ -506,6 +507,16 @@ Partial Class Form1
         Me.Panel3.Size = New System.Drawing.Size(408, 125)
         Me.Panel3.TabIndex = 11
         '
+        'limitTu_checkbox
+        '
+        Me.limitTu_checkbox.AutoSize = True
+        Me.limitTu_checkbox.Location = New System.Drawing.Point(40, 98)
+        Me.limitTu_checkbox.Name = "limitTu_checkbox"
+        Me.limitTu_checkbox.Size = New System.Drawing.Size(338, 21)
+        Me.limitTu_checkbox.TabIndex = 3
+        Me.limitTu_checkbox.Text = "Limit Design Tu to Compatibility Torsion (phi*Tcr)"
+        Me.limitTu_checkbox.UseVisualStyleBackColor = True
+        '
         'dShearTorsion
         '
         Me.dShearTorsion.AutoSize = True
@@ -553,16 +564,6 @@ Partial Class Form1
         Me.Panel4.Size = New System.Drawing.Size(866, 724)
         Me.Panel4.TabIndex = 37
         '
-        'limitTu_checkbox
-        '
-        Me.limitTu_checkbox.AutoSize = True
-        Me.limitTu_checkbox.Location = New System.Drawing.Point(40, 98)
-        Me.limitTu_checkbox.Name = "limitTu_checkbox"
-        Me.limitTu_checkbox.Size = New System.Drawing.Size(338, 21)
-        Me.limitTu_checkbox.TabIndex = 3
-        Me.limitTu_checkbox.Text = "Limit Design Tu to Compatibility Torsion (phi*Tcr)"
-        Me.limitTu_checkbox.UseVisualStyleBackColor = True
-        '
         'print_input_checkbox
         '
         Me.print_input_checkbox.AutoSize = True
@@ -573,12 +574,26 @@ Partial Class Form1
         Me.print_input_checkbox.Text = "Print Inputs"
         Me.print_input_checkbox.UseVisualStyleBackColor = True
         '
+        'Label11
+        '
+        Me.Label11.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.Label11.BackColor = System.Drawing.SystemColors.Control
+        Me.Label11.Font = New System.Drawing.Font("Consolas", 9.0!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label11.ForeColor = System.Drawing.Color.Blue
+        Me.Label11.Location = New System.Drawing.Point(11, 689)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Padding = New System.Windows.Forms.Padding(5)
+        Me.Label11.Size = New System.Drawing.Size(408, 47)
+        Me.Label11.TabIndex = 38
+        Me.Label11.Text = "Source Code is available at" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "https://github.com/usmanshamsi/SDU-2" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
+        '
         'Form1
         '
         Me.AcceptButton = Me.design_button
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1308, 748)
+        Me.Controls.Add(Me.Label11)
         Me.Controls.Add(Me.print_input_checkbox)
         Me.Controls.Add(Me.Panel4)
         Me.Controls.Add(Me.Panel3)
@@ -677,5 +692,6 @@ Partial Class Form1
     Friend WithEvents Panel4 As System.Windows.Forms.Panel
     Friend WithEvents limitTu_checkbox As System.Windows.Forms.CheckBox
     Friend WithEvents print_input_checkbox As System.Windows.Forms.CheckBox
+    Friend WithEvents Label11 As System.Windows.Forms.Label
 
 End Class
